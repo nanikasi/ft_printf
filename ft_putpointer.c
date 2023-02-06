@@ -2,22 +2,25 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putpointer.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2023/02/06 12:09:59 by nanakani          #+#    #+#             */
 /*   Updated: 2023/02/06 12:09:59 by nanakani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "../libftprintf.h"
+#include "ft_printf.h"
 
-static void	recursive(unsigned long long n, size_t* length);
+static void	recursive(unsigned long long n, size_t *length);
 
 size_t	ft_putpointer(long long pointer)
 {
-	size_t	length;
+	size_t				length;
 	unsigned long long	num;
 
 	length = ft_putstr("0x");
@@ -26,7 +29,7 @@ size_t	ft_putpointer(long long pointer)
 	return (length);
 }
 
-static void	recursive(unsigned long long n, size_t* length)
+static void	recursive(unsigned long long n, size_t *length)
 {
 	if (n < 16)
 	{

@@ -32,5 +32,6 @@ ssize_t	ft_putstr(char *str);
 ssize_t	ft_putptr(t_ullong pointer);
 ssize_t	ft_putuns(char *format, unsigned int nbr);
 ssize_t	ft_putsig(char *format, int nbr);
+size_t	ft_strlen(const char *s);
 
 #endif

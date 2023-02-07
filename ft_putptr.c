@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
 #include "ft_printf.h"
 
 static void	recursive(t_ullong n, ssize_t *length);

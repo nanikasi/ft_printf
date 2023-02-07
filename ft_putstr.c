@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 12:07:10 by nanakani          #+#    #+#             */
 /*   Updated: 2023/02/06 12:07:10 by nanakani         ###   ########.fr       */
 /*                                                                            */
@@ -16,9 +13,9 @@
 #include <stddef.h>
 #include <unistd.h>
 
-size_t	ft_putstr(char *str)
+ssize_t	ft_putstr(char *str)
 {
-	size_t	length;
+	ssize_t	length;
 
 	length = 0;
 	if (str == NULL)

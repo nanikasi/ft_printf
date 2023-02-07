@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf_digit.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 07:41:51 by nanakani          #+#    #+#             */
 /*   Updated: 2023/02/06 07:41:51 by nanakani         ###   ########.fr       */
 /*                                                                            */
@@ -19,11 +16,11 @@
 #include <stddef.h>
 #include <unistd.h>
 
-static void	recursive(int n, size_t *length, size_t base, char *format);
+static void	recursive(int n, ssize_t *length, size_t base, char *format);
 
-ssize_t	ft_putsig(int nbr, char *format)
+ssize_t	ft_putsig(char *format, int nbr)
 {
-	size_t	length;
+	ssize_t	length;
 	size_t	base;
 
 	length = 0;
@@ -40,7 +37,7 @@ ssize_t	ft_putsig(int nbr, char *format)
 	return (length);
 }
 
-static void	recursive(int n, size_t *length, size_t base, char *format)
+static void	recursive(int n, ssize_t *length, size_t base, char *format)
 {
 	if (n < (int)base)
 	{

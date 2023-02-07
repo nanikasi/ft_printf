@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:08:23 by nanakani          #+#    #+#             */
 /*   Updated: 2022/07/07 21:08:23 by nanakani         ###   ########.fr       */
 /*                                                                            */

@@ -21,4 +21,5 @@ int main()
 	// ft_printf(" %p %p \n", LONG_MIN, LONG_MAX);
 	printf("ptr: %p\n", -1);
 	ft_printf("ptr: %p\n", -1 );
+	ft_printf("ptr: %c\n", 'a');
 }

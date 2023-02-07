@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 07:52:45 by nanakani          #+#    #+#             */
 /*   Updated: 2023/02/06 07:52:45 by nanakani         ###   ########.fr       */
 /*                                                                            */
@@ -26,12 +23,14 @@
 # define LO_HEX_FORMAT "0123456789abcdef"
 # define UP_HEX_FORMAT "0123456789ABCDEF"
 
+typedef unsigned long long	t_ullong;
+
 int		ft_printf(const char *format, ...);
 
-ssize_t	ft_putchar(unsigned char c);
-size_t	ft_putstr(char *str);
-size_t	ft_putptr(unsigned long long pointer);
-ssize_t	ft_putuns(unsigned int nbr, char *format);
-ssize_t	ft_putsig(int nbr, char *format);
+ssize_t	ft_putchr(unsigned int n);
+ssize_t	ft_putstr(char *str);
+ssize_t	ft_putptr(t_ullong pointer);
+ssize_t	ft_putuns(char *format, unsigned int nbr);
+ssize_t	ft_putsig(char *format, int nbr);
 
 #endif

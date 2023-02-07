@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putunsigned.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:07:14 by nanakani          #+#    #+#             */
 /*   Updated: 2023/02/06 15:07:14 by nanakani         ###   ########.fr       */
 /*                                                                            */
@@ -15,12 +12,12 @@
 
 #include "../libftprintf.h"
 
-static void	recursive(unsigned int n, size_t *length, size_t base,
+static void	recursive(unsigned int n, ssize_t *length, size_t base,
 				char *format);
 
-ssize_t	ft_putuns(unsigned int nbr, char *format)
+ssize_t	ft_putuns(char *format, unsigned int nbr)
 {
-	size_t	length;
+	ssize_t	length;
 	size_t	base;
 
 	length = 0;
@@ -29,7 +26,7 @@ ssize_t	ft_putuns(unsigned int nbr, char *format)
 	return (length);
 }
 
-static void	recursive(unsigned int n, size_t *length, size_t base,
+static void	recursive(unsigned int n, ssize_t *length, size_t base,
 		char *format)
 {
 	if (n < base)

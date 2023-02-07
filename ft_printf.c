@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                     +:+ +:+        +:+     */
+/*   By: nanakani <nanakani@student.42tokyo.jp>      +#+  +:+      +#+        */
+/*                                                 +#+#+#+#+#+  +#+           */
 /*   Created: 2022/11/27 02:52:37 by nanakani          #+#    #+#             */
 /*   Updated: 2022/11/27 02:52:37 by nanakani         ###   ########.fr       */
 /*                                                                            */
@@ -16,54 +13,58 @@
 #include "ft_printf.h"
 #include <stdarg.h>
 
-static ssize_t	ft_printf_router(char spec, va_list *args, size_t *length);
+static ssize_t	ft_printf_router(char spec, va_list *args);
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	size_t	i;
 	size_t	length;
+	ssize_t	tmplen;
 
-	va_start(args, format);
 	i = 0;
 	length = 0;
+	va_start(args, format);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if (ft_printf_router(format[i], &args, &length) == -1)
+			tmplen = ft_printf_router(format[i++], &args);
+			if (tmplen == -1)
 				return (-1);
-			i++;
+			length += (size_t)tmplen;
 			continue ;
 		}
-		length += ft_putchar(format[i++]);
+		length += (size_t)ft_putchr(format[i++]);
 	}
 	va_end(args);
-	return (length);
+	return ((int)length);
 }
 
-static ssize_t	ft_printf_router(char spec, va_list *args, size_t *length)
+static ssize_t	ft_printf_router(char spec, va_list *args)
 {
+	ssize_t	length;
+
 	if (spec == 'c')
-		*length += ft_putchar((unsigned char)va_arg(*args, int));
+		length = ft_putchr(va_arg(*args, unsigned int));
 	else if (spec == 's')
-		*length += ft_putstr(va_arg(*args, char *));
+		length = ft_putstr(va_arg(*args, char *));
 	else if (spec == 'p')
-		*length += ft_putptr(va_arg(*args, long long));
-	else if (spec == 'd' || spec == 'i')
-		*length += ft_putsig(va_arg(*args, int), DEC_FORMAT);
+		length = ft_putptr(va_arg(*args, t_ullong));
+	else if (spec == 'd')
+		length = ft_putsig(DEC_FORMAT, va_arg(*args, int));
+	else if (spec == 'i')
+		length = ft_putsig(DEC_FORMAT, va_arg(*args, int));
 	else if (spec == 'u')
-		*length += ft_putuns(va_arg(*args, unsigned int), DEC_FORMAT);
+		length = ft_putuns(DEC_FORMAT, va_arg(*args, unsigned int));
 	else if (spec == 'x')
-		*length += ft_putuns((long long)va_arg(*args, long long),
-				LO_HEX_FORMAT);
+		length = ft_putuns(LO_HEX_FORMAT, va_arg(*args, t_ullong));
 	else if (spec == 'X')
-		*length += ft_putuns((long long)va_arg(*args, long long),
-				UP_HEX_FORMAT);
+		length = ft_putuns(UP_HEX_FORMAT, va_arg(*args, t_ullong));
 	else if (spec == '%')
-		*length += ft_putchar(spec);
+		length = ft_putchr('%');
 	else
 		return (-1);
-	return (0);
+	return (length);
 }

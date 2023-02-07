@@ -13,18 +13,18 @@
 #include "../libftprintf.h"
 #include "ft_printf.h"
 
-static void	recursive(unsigned long long n, size_t *length);
+static void	recursive(t_ullong n, ssize_t *length);
 
-size_t	ft_putptr(unsigned long long pointer)
+ssize_t	ft_putptr(t_ullong pointer)
 {
-	size_t	length;
+	ssize_t	length;
 
 	length = ft_putstr("0x");
 	recursive(pointer, &length);
 	return (length);
 }
 
-static void	recursive(unsigned long long n, size_t *length)
+static void	recursive(t_ullong n, ssize_t *length)
 {
 	if (n < 16)
 	{

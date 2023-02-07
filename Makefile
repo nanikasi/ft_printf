@@ -1,11 +1,10 @@
 NAME := libftprintf.a
 SRCS =	ft_printf.c \
 		ft_putchar.c \
-		ft_putpointer.c \
+		ft_putptr.c \
 		ft_putstr.c \
-		ft_putunsigned.c \
-		ft_putsigned.c \
-		ft_puthex.c \
+		ft_putuns.c \
+		ft_putsig.c \
 		ft_strlen.c
 
 OBJS_DIR = objs/

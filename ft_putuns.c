@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putpointer.c                                    :+:      :+:    :+:   */
+/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+        
 	+:+     */
 /*   By: nanakani <nanakani@student.42tokyo.jp>     +#+  +:+      
 	+#+        */
 /*                                                +#+#+#+#+#+  
 	+#+           */
-/*   Created: 2023/02/06 12:09:59 by nanakani          #+#    #+#             */
-/*   Updated: 2023/02/06 12:09:59 by nanakani         ###   ########.fr       */
+/*   Created: 2023/02/06 15:07:14 by nanakani          #+#    #+#             */
+/*   Updated: 2023/02/06 15:07:14 by nanakani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libftprintf.h"
-#include "ft_printf.h"
 
-static void	recursive(unsigned long long n, size_t *length);
+static void	recursive(unsigned int n, size_t *length, size_t base,
+				char *format);
 
-size_t	ft_putpointer(long long pointer)
+ssize_t	ft_putuns(unsigned int nbr, char *format)
 {
-	size_t				length;
-	unsigned long long	num;
+	size_t	length;
+	size_t	base;
 
-	length = ft_putstr("0x");
-	num = (unsigned long long)pointer;
-	recursive(num, &length);
+	length = 0;
+	base = ft_strlen(format);
+	recursive(nbr, &length, base, format);
 	return (length);
 }
 
-static void	recursive(unsigned long long n, size_t *length)
+static void	recursive(unsigned int n, size_t *length, size_t base,
+		char *format)
 {
-	if (n < 16)
+	if (n < base)
 	{
-		write(1, &LO_HEX_FORMAT[n], 1);
+		write(1, &format[n], 1);
 		(*length)++;
 	}
 	else
 	{
-		recursive(n / 16, length);
-		recursive(n % 16, length);
+		recursive(n / base, length, base, format);
+		recursive(n % base, length, base, format);
 	}
 }

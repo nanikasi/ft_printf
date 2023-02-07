@@ -16,8 +16,7 @@
 #include "ft_printf.h"
 #include <stdarg.h>
 
-static ssize_t	ft_printf_router(const char *format, size_t i, va_list *args,
-					size_t *length);
+static ssize_t	ft_printf_router(char spec, va_list *args, size_t *length);
 
 int	ft_printf(const char *format, ...)
 {
@@ -30,41 +29,40 @@ int	ft_printf(const char *format, ...)
 	length = 0;
 	while (format[i] != '\0')
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
 		{
-			length += ft_putchar(format[i++]);
+			i++;
+			if (ft_printf_router(format[i], &args, &length) == -1)
+				return (-1);
+			i++;
 			continue ;
 		}
-		i++;
-		if (ft_printf_router(format, i, &args, &length) == -1)
-			return (-1);
-		i++;
+		length += ft_putchar(format[i++]);
 	}
 	va_end(args);
 	return (length);
 }
 
-static ssize_t	ft_printf_router(const char *format, size_t i, va_list *args,
-		size_t *length)
+static ssize_t	ft_printf_router(char spec, va_list *args, size_t *length)
 {
-	if (format[i] == 'c')
+	if (spec == 'c')
 		*length += ft_putchar((unsigned char)va_arg(*args, int));
-	else if (format[i] == 's')
+	else if (spec == 's')
 		*length += ft_putstr(va_arg(*args, char *));
-	else if (format[i] == 'p')
-		*length += ft_putpointer(va_arg(*args, long long));
-	else if (format[i] == 'd' || format[i] == 'i')
-		*length += ft_putsigned(va_arg(*args, int), DEC_FORMAT);
-	else if (format[i] == 'u')
-		*length += ft_putunsigned(va_arg(*args, unsigned int), DEC_FORMAT);
-	else if (format[i] == 'x')
-		*length += ft_putunsigned((long long)va_arg(*args, long long),
+	else if (spec == 'p')
+		*length += ft_putptr(va_arg(*args, long long));
+	else if (spec == 'd' || spec == 'i')
+		*length += ft_putsig(va_arg(*args, int), DEC_FORMAT);
+	else if (spec == 'u')
+		*length += ft_putuns(va_arg(*args, unsigned int), DEC_FORMAT);
+	else if (spec == 'x')
+		*length += ft_putuns((long long)va_arg(*args, long long),
 				LO_HEX_FORMAT);
-	else if (format[i] == 'X')
-		*length += ft_putunsigned((long long)va_arg(*args, long long),
+	else if (spec == 'X')
+		*length += ft_putuns((long long)va_arg(*args, long long),
 				UP_HEX_FORMAT);
-	else if (format[i] == '%')
-		*length += ft_putchar(format[i]);
+	else if (spec == '%')
+		*length += ft_putchar(spec);
 	else
 		return (-1);
 	return (0);

@@ -21,7 +21,7 @@
 
 static void	recursive(int n, size_t *length, size_t base, char *format);
 
-ssize_t	ft_putsigned(int nbr, char *format)
+ssize_t	ft_putsig(int nbr, char *format)
 {
 	size_t	length;
 	size_t	base;

@@ -30,9 +30,8 @@ int		ft_printf(const char *format, ...);
 
 ssize_t	ft_putchar(unsigned char c);
 size_t	ft_putstr(char *str);
-size_t	ft_putpointer(long long pointer);
-ssize_t	ft_putunsigned(unsigned int nbr, char *format);
-ssize_t	ft_putsigned(int nbr, char *format);
-size_t	ft_puthex(char *format, long long long_num);
+size_t	ft_putptr(unsigned long long pointer);
+ssize_t	ft_putuns(unsigned int nbr, char *format);
+ssize_t	ft_putsig(int nbr, char *format);
 
 #endif
